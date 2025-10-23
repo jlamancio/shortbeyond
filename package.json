@@ -1,0 +1,20 @@
+{
+  "name": "shortbeyond",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "@fakerjs/faker": "^3.0.0",
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.9.1"
+  }
+}
