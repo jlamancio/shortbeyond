@@ -1,17 +1,11 @@
-import { test, expect } from 'playwright/test';
+import { test, expect } from '../../support/fixtures/index.js';
 import { getUser } from '../../support/factories/user.js';
-import { authService } from '../../support/services/auth.js';
+
 
 
 test.describe('POST / auth/register', () => {
 
-    let auth = null;
-
-    test.beforeEach(({ request }) => {
-        auth = authService(request);
-    })
-
-    test('Deve cadastrar um novo usuário', async ({ request }) => {
+    test('Deve cadastrar um novo usuário', async ({ auth }) => {
 
         const user = getUser();
 
@@ -27,7 +21,7 @@ test.describe('POST / auth/register', () => {
         expect(responseBody.user).not.toHaveProperty('password');
     });
 
-    test('Não deve cadastrar quando o email já estiver em uso', async ({ request }) => {
+    test('Não deve cadastrar quando o email já estiver em uso', async ({ auth }) => {
 
         const user = getUser();
 
@@ -41,7 +35,7 @@ test.describe('POST / auth/register', () => {
         expect(responseBody).toHaveProperty('message', 'Este e-mail já está em uso. Por favor, tente outro.');
     });
 
-    test('Não deve cadastrar quando o email é incorreto', async ({ request }) => {
+    test('Não deve cadastrar quando o email é incorreto', async ({ auth }) => {
 
         const user = {
             "name": "Jose Luis Amancio",
@@ -56,7 +50,7 @@ test.describe('POST / auth/register', () => {
         expect(responseBody).toHaveProperty('message', "O campo 'Email' deve ser um email válido");
     });
 
-    test('Não deve cadastrar quando o campo nome não é informado', async ({ request }) => {
+    test('Não deve cadastrar quando o campo nome não é informado', async ({ auth }) => {
 
         const user = {
             "email": "amancio.jluis&email.com",
@@ -70,7 +64,7 @@ test.describe('POST / auth/register', () => {
         expect(responseBody).toHaveProperty('message', "O campo 'Name' é obrigatório");
     });
 
-    test('Não deve cadastrar quando o campo Email não é informado', async ({ request }) => {
+    test('Não deve cadastrar quando o campo Email não é informado', async ({ auth }) => {
 
         const user = {
             "name": "Jose Luis Amancio",
@@ -84,7 +78,7 @@ test.describe('POST / auth/register', () => {
         expect(responseBody).toHaveProperty('message', "O campo 'Email' é obrigatório");
     });
 
-    test('Não deve cadastrar quando o campo Password não é informado', async ({ request }) => {
+    test('Não deve cadastrar quando o campo Password não é informado', async ({ auth }) => {
 
         const user = {
             "name": "Jose Luis Amancio",

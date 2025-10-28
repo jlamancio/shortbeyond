@@ -1,16 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { authService } from '../../support/services/auth.js';
-
+import { test, expect } from '../../support/fixtures/index.js';
 import { getUser } from '../../support/factories/user.js';
 
 test.describe('POST /auth/login', () => {
     let auth = null;
 
-    test.beforeEach(({ request }) => {
-        auth = authService(request);
-    });
-
-    test('Deve fazer login com sucesso', async () => {
+    test('Deve fazer login com sucesso', async ({ auth }) => {
         const user = getUser();
 
         const respCreate = await auth.createUser(user);
@@ -30,7 +24,7 @@ test.describe('POST /auth/login', () => {
         expect(body.data.user).not.toHaveProperty('password');
     });
 
-    test('Não deve logar com senha incorreta', async () => {
+    test('Não deve logar com senha incorreta', async ({ auth }) => {
         const user = getUser();
 
         const respCreate = await auth.createUser(user);
@@ -44,7 +38,7 @@ test.describe('POST /auth/login', () => {
         expect(body).toHaveProperty('message', 'Credenciais inválidas');
     });
 
-    test('Não deve logar com email não cadastrado', async () => {
+    test('Não deve logar com email não cadastrado', async ({ auth }) => {
         const user = {
             email: 'teste.401@amancio.qa',
             password: 'pwd123'
@@ -58,7 +52,7 @@ test.describe('POST /auth/login', () => {
         expect(body).toHaveProperty('message', 'Credenciais inválidas');
     });
 
-    test('Não deve logar quando o email não é informado', async () => {
+    test('Não deve logar quando o email não é informado', async ({ auth }) => {
         const user = {
             password: 'pwd123'
         }
@@ -71,7 +65,7 @@ test.describe('POST /auth/login', () => {
         expect(body).toHaveProperty('message', 'O campo \'Email\' é obrigatório');
     });
 
-    test('Não deve logar quando apassword não é informada', async () => {
+    test('Não deve logar quando apassword não é informada', async ({ auth }) => {
         const user = {
             email: 'teste.401@amancio.qa'
         }
