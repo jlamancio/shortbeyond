@@ -1,0 +1,20 @@
+meta {
+  name: Obter lista de links
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3333/api/links
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMDFLOFFRREdCWThWRFBKQUdRSzkyOVBUQ0ciLCJleHAiOjE3NjE4MTkzMTksImlhdCI6MTc2MTczMjkxOX0.nVJUg0cc2PlwWrfjn7qxCHE52CP0Rmc795N6YyaUW_8
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

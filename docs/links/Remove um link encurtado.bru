@@ -1,0 +1,20 @@
+meta {
+  name: Remove um link encurtado
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://localhost:3333/api/links/01K8QTXDEBF3MZ5DC15T1EGF83
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMDFLODg3QzZBQzM1OVNaWktXR0dUTkpKUTMiLCJleHAiOjE3NjE4MjA2OTEsImlhdCI6MTc2MTczNDI5MX0.hbAXaIA-lm1NFBd7Q5vNNJVUHVVT1ij0CpwDmFm9fl8
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -12,7 +14,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    // baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_API,
     trace: 'on-first-retry',
   },
 
